@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 import { ICustomer } from '../../shared/interfaces';
 
@@ -6,7 +6,7 @@ import { ICustomer } from '../../shared/interfaces';
   selector: 'app-customers-list',
   templateUrl: './customers-list.component.html'
 })
-export class CustomersListComponent implements OnInit {
+export class CustomersListComponent {
   private _customers: ICustomer[] = []; // original data
   filteredCustomers: ICustomer[] = []; // filtered data
   customersOrderTotal: number;
@@ -23,15 +23,26 @@ export class CustomersListComponent implements OnInit {
     return this._customers;
   }
 
-  constructor() {}
-
-  ngOnInit() {}
-
   calculateOrders() {
     this.customersOrderTotal = 0;
     this.filteredCustomers.forEach((cust: ICustomer) => {
       this.customersOrderTotal += cust.orderTotal;
     });
+  }
+
+  filterCustomers(userInput: string) {
+    if (userInput) {
+      this.filteredCustomers = this.customers.filter((cust: ICustomer) => {
+        return (
+          cust.name.toLowerCase().indexOf(userInput.toLowerCase()) > -1 ||
+          cust.city.toLowerCase().indexOf(userInput.toLowerCase()) > -1 ||
+          cust.orderTotal.toString().indexOf(userInput) > -1
+        );
+      });
+    } else {
+      this.filteredCustomers = this.customers;
+    }
+    this.calculateOrders();
   }
 
   sort(e: MouseEvent): void {

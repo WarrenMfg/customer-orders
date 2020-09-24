@@ -1,4 +1,5 @@
 .thead-primary {
   background-color: var(--primary);
   color: white;
+  cursor: pointer;
 }

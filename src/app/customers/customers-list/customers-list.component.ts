@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 import { ICustomer } from '../../shared/interfaces';
+import { SorterService } from '../../core/sorter.service';
 
 @Component({
   selector: 'app-customers-list',
@@ -11,6 +12,8 @@ export class CustomersListComponent {
   filteredCustomers: ICustomer[] = []; // filtered data
   customersOrderTotal: number;
   currencyCode = 'USD';
+
+  constructor(private sorterService: SorterService) {}
 
   @Input() set customers(cust: ICustomer[]) {
     if (cust) {
@@ -48,6 +51,6 @@ export class CustomersListComponent {
   sort(e: MouseEvent): void {
     // sort service
     const target = e.target as HTMLElement;
-    console.log(target.innerText);
+    this.sorterService.sort(this.filteredCustomers, target.dataset.sortby);
   }
 }

@@ -5,10 +5,9 @@ import { FormsModule } from '@angular/forms';
 import { CustomersComponent } from './customers.component';
 import { CustomersListComponent } from './customers-list/customers-list.component';
 import { FilterComponent } from './customers-list/filter.component';
-import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
-  imports: [CommonModule, SharedModule, FormsModule],
+  imports: [CommonModule, FormsModule],
   declarations: [CustomersComponent, CustomersListComponent, FilterComponent],
   exports: [CustomersComponent]
 })

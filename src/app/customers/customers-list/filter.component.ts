@@ -9,12 +9,12 @@ export class FilterComponent {
 
   set filter(val: string) {
     this._filter = val;
-    this.changed.emit(this.filter); // Trigger changed event
+    this.filtered.emit(this.filter); // Trigger 'filtered' event
   }
 
   get filter() {
     return this._filter;
   }
 
-  @Output() changed = new EventEmitter<string>();
+  @Output() filtered = new EventEmitter<string>(); // name of event is 'filtered'
 }

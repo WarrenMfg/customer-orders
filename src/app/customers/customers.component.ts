@@ -7,13 +7,13 @@ import { ICustomer } from '../shared/interfaces';
 })
 export class CustomersComponent implements OnInit {
   title: string;
-  people: ICustomer[];
+  data: ICustomer[];
 
   constructor() {}
 
   ngOnInit() {
     this.title = 'Customers';
-    this.people = [
+    this.data = [
       {
         id: 1,
         name: 'john Doe',
